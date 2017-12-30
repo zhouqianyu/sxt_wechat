@@ -10,4 +10,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function json_die($res)
+    {
+        die(json_encode($res, JSON_UNESCAPED_UNICODE));
+    }
 }

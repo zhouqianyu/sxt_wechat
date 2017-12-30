@@ -1,0 +1,26 @@
+.orderDetail {
+    width: 100%;
+    height: 200px;
+    background-color: white;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+.orderDetailHeader {
+    height: 40px;
+    border-bottom: 1px solid #d5d3d3;
+    display: flex;
+    align-items: center;
+}
+.detailItem {
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.detailLeft {
+    padding-left: 1rem;
+}
+.detailRight {
+    position: absolute;
+    right: 1rem;
+}

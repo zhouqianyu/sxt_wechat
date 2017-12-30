@@ -1,0 +1,143 @@
+body,html {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+body {
+    background-color: #f4f4f4;
+}
+.header {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tableNum {
+    padding-left: 1rem;
+    padding-right: 20px;
+}
+
+.main {
+    background-color: white;
+    margin-top: 8px;
+}
+
+.mainHeader {
+    width: 100%;
+    height: 34px;
+    padding-top: 10px;
+    padding-left: 15px;
+    color: gray;
+    border-bottom: 1px solid #d5d3d3;
+}
+
+.mainCenter {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d5d3d3;
+}
+.mainItem {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 5px;
+    position: relative;
+}
+
+.foodName{
+    padding-left: 1rem;
+    font-size: 15px;
+}
+.foodNum {
+    position: absolute;
+    font-size: 15px;
+    color: gray;
+    right: calc(1rem + 70px);
+}
+.money {
+    position: absolute;
+    right: 1rem;
+}
+
+.remarkContainer {
+    width: 100%;
+    height: 40px;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.addRemark {
+    position: absolute;
+    right: 1rem;
+}
+.totalContainer {
+    width: 100%;
+    height: 120px;
+    background-color: white;
+    font-size: 15px;
+}
+.totalHeader {
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: coral;
+    margin-bottom: 7px;
+}
+.totalLeft {
+    padding-left: 1rem;
+}
+.totalMoney, .onSale {
+    position: absolute;
+    right: 1rem;
+}
+.totalNums {
+    position: absolute;
+    right: calc(1rem + 70px);
+}
+
+.totalCenter {
+    height: 40px;
+    color: gray;
+}
+.totalBottom {
+    color: coral;
+}
+
+
+
+.bottom {
+    width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    padding-top: 10px;
+}
+.bottom div {
+    width: 46%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.continueAdd{
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-right: 2%;
+}
+.pay {
+    background-color: coral;
+    border-radius: 5px;
+    color: white;
+}

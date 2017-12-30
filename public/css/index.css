@@ -1,0 +1,200 @@
+::-webkit-scrollbar{width:0}
+body,html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.indexContainer {
+    width: 100%;
+    height: 100%;
+}
+.header {
+    width: 100%;
+    height: 134px;
+    background-image: url("../img/headerBackground.jpg");
+    background-size: cover;
+    position: fixed;
+    z-index: 3;
+}
+.restaurant {
+    width: 60px;
+    height: 60px;
+    margin: 1rem 0 0 1rem;
+}
+.restaurantName {
+    color: white;
+    position: relative;
+    left: 14px;
+    top: -26px;
+}
+.promotion {
+    color: white;
+    margin-left: 1rem;
+}
+
+.main {
+    width: 100%;
+    height: calc(100% - 184px);
+    display: flex;
+    flex-direction: row;
+    padding-top: 134px;
+}
+.mainLeft {
+    width: 80px;
+    height: 100%;
+    background-color: #7c7a7a21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+}
+.mainLeft span {
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    padding-top: 20px;
+    font-size: 15px;
+}
+.current {
+    background-color: white;
+    color: coral;
+}
+.mainRight {
+    width: calc(100% - 80px);
+    margin-left: 80px;
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 73px;
+    overflow-x: hidden;
+}
+.mainRightTop {
+    width: 100%;
+    height: 30px;
+    background-color: #f4f4f4;
+    padding-left: 10px;
+    padding-top: 6px;
+}
+.mainRightTop span {
+    font-size: 14px;
+}
+.mainItem {
+    padding-top: 10px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+.mainItemCenter {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+.money {
+    margin-top: 10px;
+    color: coral;
+}
+.mainItemRight {
+    position: absolute;
+    right: 5px;
+    width: 100px;
+    height: 77px;
+}
+.rightAdd {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    border: 1px solid gray;
+    right: 10px;
+    top: 26px;
+}
+.rightAddIcon {
+    color: coral;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.mainItemCheck {
+    width: 80px;
+    height: 25px;
+    border-radius: 20px;
+    border: 1px solid gray;
+    position: absolute;
+    top: 23px;
+    padding-top: 4px;
+    padding-left: 10px;
+}
+
+.mainItemCheck span {
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    padding: 4px 8px 5px 8px;
+}
+
+.bottom {
+    width: 100%;
+    height: 50px;
+    background-color: #3e3636;
+    position: fixed;
+    bottom: 0;
+}
+.cartBtn {
+    background-color: black;
+    width: 55px;
+    height: 55px;
+    border-radius: 30px;
+    position: absolute;
+    bottom: 0.7rem;
+    left: 1rem;
+}
+.cartIcon {
+    color: white;
+    position: absolute;
+    bottom: 1.1rem;
+    left: 0.9rem;
+}
+.cartNum {
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    background-color: coral;
+    color: white;
+    bottom: 3rem;
+    position: absolute;
+    left: 3rem;
+    z-index: 1;
+}
+.cartNum span {
+    padding-left: 7px;
+}
+.cartTip {
+    width: 120px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+    right: 0;
+    color: white;
+}
+.cartTip span {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+}
+.cartTipNotEmpty {
+    width: 120px;
+    height: 50px;
+    background-color: coral;
+    position: absolute;
+    right: 0;
+    color: white;
+}
+.cartTipNotEmpty span {
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+}
+.hidden {
+    display: none;
+}

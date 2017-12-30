@@ -10,7 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//index
+Route::get('index','IndexController@index')->name('index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//cart
+Route::post('cart/change','CartController@change');
+Route::get('cart','CartController@view')->name('cart');
+Route::get('order','OrderController@view')->name('order');
+Route::get('order/confirm','OrderController@confirm')->name('confirm');
+Route::get('order/submit','OrderController@submit')->name('submit');
+Route::get('order/pay','OrderController@pay')->name('pay');
+Route::get('order/myOrder','OrderController@myOrder')->name('myOrder');
+Route::get('order/detail','OrderController@detail')->name('detail');
