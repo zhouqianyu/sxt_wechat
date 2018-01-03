@@ -47,7 +47,7 @@
 </div>
 <div class="payBottom">
     <div class="toPay" onclick="toPay({{$id}})">
-        去支付￥0.02
+        去支付￥{{$data['price']}}
     </div>
 </div>
 </body>

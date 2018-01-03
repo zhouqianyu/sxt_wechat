@@ -16,10 +16,16 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
     public function index(){
+        if (isset($_GET['code'])) {
+            $code = $_GET['code'];
+            $openId = $this->getOpenId($code);
+            setcookie('userId',$openId,time()+7200,'/');
+            $_COOKIE['userId'] = $openId;
+        }
         $type = isset($_GET['type'])?$_GET['type']:1;
         $greens = Greens::where('type',$type)->get()->toArray();
         $cart = Cart::where('user_id',$_COOKIE['userId'])->get()->toArray();
-        $cartCount = Cart::select(DB::raw('sum(num) as count'))->first()->count;
+        $cartCount = Cart::where('user_id',$_COOKIE['userId'])->select(DB::raw('sum(num) as count'))->first()->count;
         $cart = array_column($cart,'num','greens_id');
         foreach ($greens as $k => $v){
             if (key_exists($v['id'],$cart)) $greens[$k]['count'] = $cart[$v['id']];

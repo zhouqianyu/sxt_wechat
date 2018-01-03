@@ -54,6 +54,5 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
-setcookie('userId',$_GET['code'],0,'/');
 $response->send();
 $kernel->terminate($request, $response);

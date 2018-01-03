@@ -42,8 +42,7 @@
 </body>
 <script>
     let totalSpan = document.getElementById('total');
-    let total = parseFloat(totalSpan.innerHTML);
-    console.log(total);
+    let totalMoney = parseFloat(totalSpan.innerHTML);
     function GreenAdd (obj) {
         let mainItem = obj.parentNode.parentNode;
         let id = mainItem.getAttribute('key');
@@ -58,8 +57,8 @@
                 if (res.data.code === 200) {
                     countSpan.innerHTML = count;
                     mainItem.setAttribute('count', count);
-                    total+=money;
-                    totalSpan.innerHTML = total.toFixed(2);
+                    totalMoney+=money;
+                    totalSpan.innerHTML = totalMoney.toFixed(2);
                 }
             })
     }
@@ -77,8 +76,8 @@
                 if (res.data.code === 200) {
                     countSpan.innerHTML = count;
                     mainItem.setAttribute('count', count);
-                    total-=money;
-                    totalSpan.innerHTML = total.toFixed(2);
+                    totalMoney-=money;
+                    totalSpan.innerHTML = totalMoney.toFixed(2);
                 }
             })
     }

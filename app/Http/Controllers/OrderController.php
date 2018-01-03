@@ -8,6 +8,12 @@ use App\Cart;
 class OrderController extends Controller
 {
     public function myOrder(){
+        if (isset($_GET['code'])) {
+            $code = $_GET['code'];
+            $openId = $this->getOpenId($code);
+            setcookie('userId',$openId,time()+7200,'/');
+            $_COOKIE['userId'] = $openId;
+        }
         $userId = $_COOKIE['userId'];
         $type = isset($_GET['type'])?$_GET['type']:0;
         switch ($type){

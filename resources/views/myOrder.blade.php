@@ -42,7 +42,7 @@
             <div class="mainBottomCenter">
                 <span>下单时间: {{$v['created_at']}}</span>
                 <span>总价: {{$v['price']}}</span>
-                <span>支付: 29.20</span>
+                <span>支付: {{$v['price']-$v['onsale_price']}}</span>
             </div>
         </div>
     @endforeach
