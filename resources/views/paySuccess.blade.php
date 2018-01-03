@@ -34,16 +34,15 @@
     <div class="totalContainer">
         <div class="totalHeader">
             <span class="totalLeft">合计</span>
-            <span class="totalNums">x11</span>
             <span class="totalMoney">￥{{$data['price']}}</span>
         </div>
         <div class="totalCenter">
             <span class="totalLeft">不参与优惠金额</span>
-            <span class="onSale">￥19.09</span>
+            <span class="onSale">￥{{floatval($data['price'])-floatval($data['onsale_price'])}}</span>
         </div>
         <div class="totalBottom">
             <span class="totalLeft">参与优惠金额</span>
-            <span class="totalMoney">￥23.33</span>
+            <span class="totalMoney">￥{{$data['onsale_price']}}</span>
         </div>
     </div>
     <div class="orderDetail">
@@ -52,7 +51,7 @@
         </div>
         <div class="detailItem">
             <span class="detailLeft">订单编号</span>
-            <span class="detailRight">37927398203829128938</span>
+            <span class="detailRight">{{$data['code']}}</span>
         </div>
         <div class="detailItem">
             <span class="detailLeft">下单时间</span>
@@ -64,7 +63,7 @@
         </div>
         <div class="detailItem">
             <span class="detailLeft">实付</span>
-            <span class="detailRight">￥0.02</span>
+            <span class="detailRight">￥{{floatval($data['price'])-floatval($data['onsale_price'])}}</span>
         </div>
     </div>
 </body>

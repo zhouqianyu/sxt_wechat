@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Bill;
 use App\Cart;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -38,8 +40,10 @@ class OrderController extends Controller
         $cart = Cart::where('user_id', $userId)->join('greens', 'cart.greens_id', '=', 'greens.id')
             ->select('greens.id', 'name', 'num', 'price')->get()->toArray();
         $bill = Bill::where('user_id', $_COOKIE['userId'])->where('type', 1)->first();
-        if ($bill!=null) $bill = $bill->toArray();
-        $total = 0;
+        if ($bill!=null){
+            $bill = $bill->toArray();
+            $total = $bill['price'];
+        }else $total = 0;
         foreach ($cart as $v) {
             $total += $v['price'] * $v['num'];
         }
@@ -49,7 +53,7 @@ class OrderController extends Controller
             $onsale_price = 0;
         }
 
-        return view('order', ['data' => $cart, 'total' => $total, 'onsale_price' => $onsale_price]);
+        return view('order', ['data' => $cart, 'total' => $total, 'onsale_price' => $onsale_price,'bill'=>$bill]);
     }
 
     public function confirm()
@@ -60,36 +64,47 @@ class OrderController extends Controller
         $cart = Cart::where('user_id', $userId)->join('greens', 'cart.greens_id', '=', 'greens.id')
             ->select('greens.id', 'name', 'num', 'price')->get()->toArray();
         $bill = Bill::where('user_id', $userId)->where('type', 1)->first();
-        if (!$bill) {
-            $total = 0;
-            $bill = Bill::create([
-                'type' => 1,
-                'user_id' => $userId,
-                'table_num' => $tableNum,
-                'remark' => $remark
-            ]);
-            foreach ($cart as $v) {
-                $total += $v['price'] * $v['num'];
-                $bill->greens()->attach($v['id'], ['num' => $v['num']]);
+        DB::beginTransaction();
+        try {
+            if (!$bill) {
+                $total = 0;
+                $bill = Bill::create([
+                    'type' => 1,
+                    'user_id' => $userId,
+                    'table_num' => $tableNum,
+                    'remark' => $remark,
+                    'code'=>Str::random(13)
+                ]);
+                foreach ($cart as $v) {
+                    $total += $v['price'] * $v['num'];
+                    $bill->greens()->attach($v['id'], ['num' => $v['num']]);
+                }
+                $bill->price = $total;
+                if ($total >= 50) $bill->onsale_price = 20;
+                else $bill->onsale_price = 0;
+                $bill->save();
+                Cart::where('user_id', $userId)->delete();
+                DB::commit();
+                return view('orderSubmitted', ['data' => $cart, 'total' => $total, 'bill' => $bill, 'table_num' => $tableNum, 'remark' => $remark]);
+            } else {
+                $total = $bill->price;
+                $totalAdd = 0;
+                foreach ($cart as $v) {
+                    $totalAdd += $v['price'] * $v['num'];
+                    $bill->greens()->attach($v['id'], ['num' => $v['num']]);
+                }
+                $total = $total + $totalAdd;
+                $bill->price = $total;
+                if ($total >= 50) $bill->onsale_price = 20;
+                else $bill->onsale_price = 0;
+                $bill->save();
+                Cart::where('user_id', $userId)->delete();
+                DB::commit();
+                return view('orderAddFood', ['data' => $cart, 'bill' => $bill]);
             }
-            $bill->price = $total;
-            if ($total >= 50) $bill->onsale_price = 20;
-            else $bill->onsale_price = 0;
-            $bill->save();
-            Cart::where('user_id', $userId)->delete();
-            return view('orderSubmitted', ['data' => $cart, 'total' => $total, 'bill' => $bill, 'table_num' => $tableNum, 'remark' => $remark]);
-        } else {
-            $total = $bill->price;
-            $totalAdd = 0;
-            foreach ($cart as $v) {
-                $totalAdd += $v['price'] * $v['num'];
-                $bill->greens()->attach($v['id'], ['num' => $v['num']]);
-            }
-            $total = $total + $totalAdd;
-            $bill->price = $total;
-            $bill->save();
-            Cart::where('user_id', $userId)->delete();
-            return view('orderAddFood', ['data' => $cart, 'total' => $totalAdd, 'bill' => $bill]);
+        }catch (\Exception $e){
+            DB::rollBack();
+            print_r($e);
         }
     }
 
@@ -127,11 +142,11 @@ class OrderController extends Controller
         $type = $bill['type'];
         switch ($type) {
             case 4:
-                return view('paySuccess', ['data' => $bill, 'id' => $bill['id'], 'total' => $bill['price'], 'detail' => true]);
+                return view('paySuccess', ['data' => $bill, 'id' => $bill['id'], 'total' => $bill['price']]);
             case 5:
                 return true;
             default:
-                return view('orderSubmitted', ['data' => $bill, 'id' => $bill['id'], 'total' => $bill['price'], 'detail' => true]);
+                return view('orderSubmitted', ['data' => $bill, 'id' => $bill['id'], 'total' => $bill['price'], 'bill'=>$bill,'detail' => true]);
         }
     }
 }

@@ -15,7 +15,7 @@
     <div class="mainHeader">
         <span>小台餐厅(青山店)</span>
         <span class="table">桌号</span>
-        <span class="tableNum">{{$bill['table_num']}}}</span>
+        <span class="tableNum">{{$data['table_num']}}}</span>
     </div>
     <div class="mainCenter">
         @foreach($data['greens'] as $v)
@@ -38,16 +38,16 @@
     </div>
     <div class="totalCenter">
         <span class="totalLeft">不参与优惠金额</span>
-        <span class="onSale">￥19.09</span>
+        <span class="onSale">￥{{floatval($data['price'])-floatval($data['onsale_price'])}}</span>
     </div>
     <div class="totalBottom">
         <span class="totalLeft">参与优惠金额</span>
-        <span class="totalMoney">￥23.33</span>
+        <span class="totalMoney">￥{{$data['onsale_price']}}</span>
     </div>
 </div>
 <div class="payBottom">
     <div class="toPay" onclick="toPay({{$id}})">
-        去支付￥{{$data['price']}}
+        去支付￥{{sprintf('%.2f',floatval($data['price'])-floatval($data['onsale_price']))}}
     </div>
 </div>
 </body>

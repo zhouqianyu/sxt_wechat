@@ -45,15 +45,15 @@
     <div class="totalContainer">
         <div class="totalHeader">
             <span class="totalLeft">合计</span>
-            <span class="totalMoney">￥{{$total}}</span>
+            <span class="totalMoney">￥{{$bill['price']}}</span>
         </div>
         <div class="totalCenter">
             <span class="totalLeft">不参与优惠金额</span>
-            <span class="onSale">￥19.09</span>
+            <span class="onSale">￥{{floatval($bill['price'])-floatval($bill['onsale_price'])}}</span>
         </div>
         <div class="totalBottom">
             <span class="totalLeft">参与优惠金额</span>
-            <span class="totalMoney">￥23.33</span>
+            <span class="totalMoney">￥{{$bill['onsale_price']}}</span>
         </div>
     </div>
     <div class="bottom">

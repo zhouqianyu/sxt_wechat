@@ -54,21 +54,21 @@
     </div>
     <div class="totalCenter">
         <span class="totalLeft">不参与优惠金额</span>
-        <span class="onSale">￥{{$bill['total']-$bill['onsale_price']}}</span>
+        <span class="onSale">￥{{floatval($bill['price'])-floatval($bill['onsale_price'])}}</span>
     </div>
     <div class="totalBottom">
         <span class="totalLeft">参与优惠金额</span>
         <span class="totalMoney">￥{{$bill['onsale_price']}}</span>
     </div>
 </div>
-<div class="cancleOrder" onclick="toCancel({{$id}})">
+<div class="cancleOrder" onclick="toCancel({{$bill['id']}})">
     取消订单
 </div>
 <div class="bottom">
     <div class="continueAdd" onclick="toAdd()">
         加菜
     </div>
-    <div class="pay" onclick="toSubmit({{$id}})">
+    <div class="pay" onclick="toSubmit({{$bill['id']}})">
         去结算
     </div>
 </div>
