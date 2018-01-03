@@ -22,3 +22,4 @@ Route::get('order/submit','OrderController@submit')->name('submit');
 Route::get('order/pay','OrderController@pay')->name('pay');
 Route::get('order/myOrder','OrderController@myOrder')->name('myOrder');
 Route::get('order/detail','OrderController@detail')->name('detail');
+Route::get('order/cancel','OrderController@cancel');

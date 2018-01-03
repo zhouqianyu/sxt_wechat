@@ -21,7 +21,7 @@
     <div class="mainHeader">
         <span>小台餐厅(青山店)</span>
         <span class="table">桌号</span>
-        <span class="tableNum">A02</span>
+        <span class="tableNum">{{$bill['table_num']}}</span>
     </div>
     <div class="mainCenter">
         @if(isset($detail))
@@ -60,7 +60,7 @@
         <div class="continueAdd" onclick="toAdd()">
             加菜
         </div>
-        <div class="pay" onclick="toSubmit({{$id}})">
+        <div class="pay" onclick="toSubmit({{$bill['id']}})">
             去结算
         </div>
     </div>

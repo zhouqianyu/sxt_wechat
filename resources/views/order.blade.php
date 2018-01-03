@@ -11,7 +11,7 @@
 <body>
     <div class="header">
         <span class="tableNum">我的桌号</span>
-        <span style="color: gray">点此选桌号</span>
+        <input class="tableNumInput" placeholder="输入桌号" id="tableNumInput" value="@if(!empty($bill)) {{$bill['table_num']}} @endif"/>
     </div>
     <div class="main">
         <div class="mainHeader">
@@ -28,7 +28,7 @@
         @endforeach
         <div class="remarkContainer">
             <span style="padding-left: 1rem">订单备注</span>
-            <span class="addRemark">点击添加备注</span>
+            <input class="addRemark" placeholder="添加备注" id="remark" value="@if(!empty($bill)) {{$bill['remark']}} @endif"/>
         </div>
     </div>
     <div class="totalContainer">
@@ -38,11 +38,11 @@
         </div>
         <div class="totalCenter">
             <span class="totalLeft">不参与优惠金额</span>
-            <span class="onSale">￥19.09</span>
+            <span class="onSale">￥{{$total - $onsale_price}}</span>
         </div>
         <div class="totalBottom">
             <span class="totalLeft">参与优惠金额</span>
-            <span class="totalMoney">￥23.33</span>
+            <span class="totalMoney">￥{{$onsale_price}}</span>
         </div>
     </div>
     <div class="bottom">
@@ -59,7 +59,9 @@
         window.location.href = '{{route('index')}}';
     }
     function toConfirm() {
-        window.location.href = '{{route('confirm')}}';
+        let tableNum = document.getElementById('tableNumInput').value;
+        let remark = document.getElementById('remark').value;
+        window.location.href = '{{URL::asset('order/confirm')}}?tableNum='+tableNum+'&remark='+ remark;
     }
 </script>
 </html>

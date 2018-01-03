@@ -15,7 +15,7 @@
     <div class="mainHeader">
         <span>小台餐厅(青山店)</span>
         <span class="table">桌号</span>
-        <span class="tableNum">A02</span>
+        <span class="tableNum">{{$bill['table_num']}}}</span>
     </div>
     <div class="mainCenter">
         @foreach($data['greens'] as $v)

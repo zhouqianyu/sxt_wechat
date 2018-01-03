@@ -20,6 +20,10 @@ body {
     padding-left: 1rem;
     padding-right: 20px;
 }
+.tableNumInput {
+    outline: none;
+    border: none;
+}
 
 .main {
     background-color: white;
@@ -76,6 +80,9 @@ body {
 .addRemark {
     position: absolute;
     right: 1rem;
+    outline: none;
+    border: none;
+    text-align: right;
 }
 .totalContainer {
     width: 100%;

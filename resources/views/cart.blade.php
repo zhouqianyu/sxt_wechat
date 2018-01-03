@@ -13,10 +13,6 @@
 <body>
 <div class="header">
     <span class="menu">我的菜单</span>
-    <div class="clear">
-        <i class="iconfont">&#xe602;</i>
-        <span>清空</span>
-    </div>
 </div>
 <div class="main">
     @foreach($data as $k => $v)
@@ -71,9 +67,15 @@
         let params = new URLSearchParams();
         params.append('id',id);
         params.append('count',--count);
+        if(parseInt(count) === 0) {
+            mainItem.parentNode.removeChild(mainItem);
+        }
         axios.post('{{URL::asset('cart/change')}}',params)
             .then(function (res) {
                 if (res.data.code === 200) {
+                    if(parseInt(count) === 0) {
+                        mainItem.parentNode.removeChild(mainItem);
+                    }
                     countSpan.innerHTML = count;
                     mainItem.setAttribute('count', count);
                     totalMoney-=money;

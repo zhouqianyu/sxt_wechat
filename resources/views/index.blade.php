@@ -18,7 +18,7 @@
             <hr style="width: 90%"/>
             <span class="promotion">
                 <i class="iconfont">&#xe60e;</i>
-                满100减20
+                满50减20
             </span>
         </div>
         <div class="main">

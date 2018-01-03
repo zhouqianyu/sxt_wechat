@@ -13,8 +13,8 @@
 <div class="header">
     <i class="iconfont waitIcon" style="font-size: 40px">&#xe62f;</i>
     <div class="headerCenter">
-        <span>待支付</span>
-        <span class="wait">订单已确认，请尽快前往支付</span>
+        <span>已取消</span>
+        <span class="wait">订单已取消</span>
     </div>
 </div>
 <div class="main">

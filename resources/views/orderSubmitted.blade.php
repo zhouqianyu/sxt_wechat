@@ -21,7 +21,7 @@
     <div class="mainHeader">
         <span>小台餐厅(青山店)</span>
         <span class="table">桌号</span>
-        <span class="tableNum">A02</span>
+        <span class="tableNum">{{isset($table_num)?$table_num:$data['table_num']}}</span>
     </div>
     <div class="mainCenter">
         @if(isset($detail))
@@ -44,7 +44,7 @@
     </div>
     <div class="remarkContainer">
         <span style="padding-left: 1rem">订单备注</span>
-        <span class="addRemark">点击添加备注</span>
+        <span class="addRemark">{{isset($remark)?$remark:$data['remark']}}</span>
     </div>
 </div>
 <div class="totalContainer">
@@ -54,14 +54,14 @@
     </div>
     <div class="totalCenter">
         <span class="totalLeft">不参与优惠金额</span>
-        <span class="onSale">￥19.09</span>
+        <span class="onSale">￥{{$bill['total']-$bill['onsale_price']}}</span>
     </div>
     <div class="totalBottom">
         <span class="totalLeft">参与优惠金额</span>
-        <span class="totalMoney">￥23.33</span>
+        <span class="totalMoney">￥{{$bill['onsale_price']}}</span>
     </div>
 </div>
-<div class="cancleOrder">
+<div class="cancleOrder" onclick="toCancel({{$id}})">
     取消订单
 </div>
 <div class="bottom">
@@ -80,8 +80,8 @@
     function toAdd() {
         window.location.href = '{{route('index')}}';
     }
-    function toCancel() {
-
+    function toCancel(id) {
+        window.location.href = '{{URL::asset('order/cancel')}}?id='+id;
     }
 </script>
 </html>

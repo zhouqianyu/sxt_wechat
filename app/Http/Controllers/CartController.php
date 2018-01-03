@@ -11,8 +11,9 @@ class CartController extends Controller
         $userId = $_COOKIE['userId'];
         $id = $_POST['id'];
         $count = $_POST['count'];
-        if ($count === 0) {
-            $cart = Cart::find($id)->delete();
+
+        if ((int)$count === 0) {
+            $cart = Cart::where('greens_id', $id)->where('user_id', $userId)->first()->delete();
         } else {
             $cart = Cart::updateOrCreate([
                 'greens_id' => $id,
